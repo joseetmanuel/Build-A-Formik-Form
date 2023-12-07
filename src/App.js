@@ -9,12 +9,19 @@ function App() {
       pswField: "",
     },
     onSubmit: (values) => {
-      alert("Inicio de sesión exitoso")
+      alert("Login Successful")
     },
     validate: (values) => {
       let errors = {};
-      if (!values.emailField) { errors.emailField = 'Campo requierido'}
-      if (!values.pswField) { errors.pswField = 'Campo requierido'}
+      if (!values.emailField) { errors.emailField = 'Field required'}
+      else {
+        const reLargo = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/
+        //TODO: validar el correo electronico
+        if(!reLargo.test(values.emailField)){
+          errors.emailField = 'Username should be an email'
+        }
+      }
+      if (!values.pswField) { errors.pswField = 'Field required'}
       return errors
     },
   });
